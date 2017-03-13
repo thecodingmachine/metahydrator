@@ -25,8 +25,8 @@ your own atomic parsers or validators), but without duplication.
 Class `MetaHydrator` uses instances of `HydratingHandlerInterface` to parse and validate raw input. Such an instance should
 parse specific key(s) in input array (using a configured instance of `ParserInterface`), and may throw an exception
 (`Invalid`).
-In `HydratingHandler` implementation of `HydratingHandlerInterface`, one specific key in input array data is handled, ie
-the value located at that key is parsed and, if parsing was successful, parsed value is validated. Keep in mind that this
+In `SimpleHydratingHandler` implementation of `HydratingHandlerInterface`, one specific key in input array data is handled,
+ie the value located at that key is parsed and, if parsing was successful, parsed value is validated. Keep in mind that this
 validation should not consider other parsed values, since a handler does not wait for all values to be parsed before
 checking for its handled value sanity.
 
