@@ -2,7 +2,9 @@
 namespace MetaHydrator;
 
 use MetaHydrator\Exception\HydratingException;
+use MetaHydrator\Exception\ValidationException;
 use MetaHydrator\Handler\HydratingHandlerInterface;
+use MetaHydrator\Validator\ValidatorInterface;
 use Mouf\Hydrator\Hydrator;
 use Mouf\Hydrator\TdbmHydrator;
 
@@ -17,17 +19,22 @@ class MetaHydrator implements Hydrator
     /** @var HydratingHandlerInterface[] */
     private $handlers = [];
 
+    /** @var ValidatorInterface[] */
+    private $validators = [];
+
     /** @var Hydrator */
     private $simpleHydrator;
 
     /**
      * MetaHydrator constructor.
      * @param HydratingHandlerInterface[] $handlers
+     * @param ValidatorInterface[] $validators
      * @param Hydrator $simpleHydrator
      */
-    public function __construct($handlers = [], $simpleHydrator = null)
+    public function __construct($handlers = [], $validators = [], $simpleHydrator = null)
     {
         $this->handlers = $handlers;
+        $this->validators = $validators;
         $this->simpleHydrator = $simpleHydrator ?? new TdbmHydrator();
     }
 
@@ -75,6 +82,14 @@ class MetaHydrator implements Hydrator
                 $handler->handle($data, $parsedData, $contextObject);
             } catch (HydratingException $e) {
                 $errorsMap = array_merge($e->getErrorsMap(), $errorsMap);
+            }
+        }
+
+        foreach ($this->validators as $validator) {
+            try {
+                $validator->validate($parsedData, $contextObject);
+            } catch (ValidationException $e) {
+                $errorsMap = array_merge($e->getInnerError(), $errorsMap);
             }
         }
 
