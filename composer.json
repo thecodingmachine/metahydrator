@@ -15,9 +15,17 @@
     "php": ">=7.0",
     "mouf/tdbm-hydrator": "~1.0"
   },
+  "require-dev" : {
+    "phpunit/phpunit": "5.3.*"
+  },
   "autoload": {
     "psr-4": {
       "MetaHydrator\\": "src"
+    }
+  },
+  "autoload-dev" : {
+    "psr-4" : {
+      "MetaHydratorTest\\" : "tests"
     }
   },
   "minimum-stability": "dev",
