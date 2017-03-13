@@ -1,0 +1,14 @@
+{
+  "name": "dsavina/metahydrator",
+  "description": "A configurable implementation of mouf's Hydrator interface",
+  "keywords": ["hydrator","mouf","parsing","validation"],
+  "homepage": "http://www.github.com/dsavina/metahydrator",
+  "type" : "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dorian Savina",
+      "email": "d.savina@thecodingmachine.com"
+    }
+  ]
+}
