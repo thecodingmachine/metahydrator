@@ -10,5 +10,16 @@
       "name": "Dorian Savina",
       "email": "d.savina@thecodingmachine.com"
     }
-  ]
+  ],
+  "require": {
+    "php": ">=7.0",
+    "mouf/tdbm-hydrator": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MetaHydrator\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
