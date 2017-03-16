@@ -1,3 +1,11 @@
+[![Latest Stable Version](https://poser.pugx.org/thecodingmachine/metahydrator/v/stable)](https://packagist.org/packages/thecodingmachine/metahydrator)
+[![Total Downloads](https://poser.pugx.org/thecodingmachine/metahydrator/downloads)](https://packagist.org/packages/thecodingmachine/metahydrator)
+[![Latest Unstable Version](https://poser.pugx.org/thecodingmachine/metahydrator/v/unstable)](https://packagist.org/packages/thecodingmachine/metahydrator)
+[![License](https://poser.pugx.org/thecodingmachine/metahydrator/license)](https://packagist.org/packages/thecodingmachine/metahydrator)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/metahydrator/badges/quality-score.png?b=4.2)](https://scrutinizer-ci.com/g/thecodingmachine/metahydrator/?branch=4.2)
+[![Build Status](https://travis-ci.org/thecodingmachine/metahydrator.svg?branch=4.2)](https://travis-ci.org/thecodingmachine/metahydrator)
+[![Coverage Status](https://coveralls.io/repos/thecodingmachine/metahydrator/badge.svg?branch=4.2&service=github)](https://coveralls.io/github/thecodingmachine/metahydrator?branch=4.2)
+
 # About hydrating
 
 This package aims to help handling raw data (associative arrays of basic types) for editing and creating instances of
