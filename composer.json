@@ -1,5 +1,5 @@
 {
-  "name": "dsavina/metahydrator",
+  "name": "thecodingmachine/metahydrator",
   "description": "A configurable implementation of mouf's Hydrator interface",
   "keywords": ["hydrator","mouf","parsing","validation"],
   "homepage": "http://www.github.com/dsavina/metahydrator",
