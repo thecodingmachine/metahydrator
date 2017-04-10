@@ -55,25 +55,27 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
         }
 
         try {
-            $targetData[$this->key] = $this->parser->parse($rawValue);
+            $parsedValue = $this->parser->parse($rawValue);
         } catch (ParsingException $exception) {
             throw new HydratingException([ $this->key => $exception->getInnerError() ]);
         }
 
-        $this->validate($targetData, $object);
+        $this->validate($parsedValue, $object);
+
+        $targetData[$this->key] = $parsedValue;
     }
 
     /**
-     * @param array $parsedData
+     * @param mixed $parsedValue
      * @param mixed $contextObject
      *
      * @throws HydratingException
      */
-    private function validate($parsedData, $contextObject = null)
+    private function validate($parsedValue, $contextObject = null)
     {
         try {
             foreach ($this->validators as $validator) {
-                $validator->validate($parsedData[$this->key], $contextObject);
+                $validator->validate($parsedValue, $contextObject);
             }
         } catch (ValidationException $exception) {
             throw new HydratingException([ $this->key => $exception->getInnerError() ]);
