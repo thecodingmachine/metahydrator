@@ -27,9 +27,9 @@ class SimpleErrorMessage implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return $this->message;
     }

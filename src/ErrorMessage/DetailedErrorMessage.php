@@ -17,7 +17,7 @@ class DetailedErrorMessage extends SimpleErrorMessage
     /**
      * FieldError constructor.
      * @Important
-     * @param string $error
+     * @param string $message
      * @param string $details
      */
     public function __construct($message = '', $details = '')
@@ -27,9 +27,9 @@ class DetailedErrorMessage extends SimpleErrorMessage
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    function jsonSerialize()
+    public function jsonSerialize()
     {
         return [
             'message' => $this->getMessage(),

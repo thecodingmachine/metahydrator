@@ -54,7 +54,7 @@ class MetaHydrator implements Hydrator
 
     /**
      * @param array $data
-     * @param string $class
+     * @param string $className
      * @return object
      *
      * @throws HydratingException
@@ -93,7 +93,7 @@ class MetaHydrator implements Hydrator
             }
         }
 
-        if ($errorsMap) {
+        if (!empty($errorsMap)) {
             throw new HydratingException($errorsMap);
         }
 

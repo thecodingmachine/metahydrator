@@ -40,7 +40,7 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
     /**
      * @param array $data
      * @param array $targetData
-     * @param null $object
+     * @param $object
      *
      * @throws HydratingException
      */

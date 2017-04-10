@@ -15,7 +15,6 @@ interface HydratingHandlerInterface
      * @param array $data
      * @param array $targetData
      * @param $object
-     * @return mixed
      *
      * @throws HydratingException
      */
