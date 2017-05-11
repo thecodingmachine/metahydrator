@@ -11,14 +11,14 @@ use MetaHydrator\Exception\ValidationException;
  */
 abstract class AbstractValidator implements ValidatorInterface
 {
-    /** @var mixed */
+    /** @var string */
     private $errorMessage;
-    /** @return mixed */
+    /** @return string */
     public function getErrorMessage() { return $this->errorMessage; }
 
     /**
      * AbstractValidator constructor.
-     * @param mixed $errorMessage
+     * @param string $errorMessage
      */
     public function __construct($errorMessage = "")
     {
