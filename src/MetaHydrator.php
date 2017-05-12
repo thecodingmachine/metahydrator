@@ -19,7 +19,7 @@ class MetaHydrator implements Hydrator
     /** @var HydratingHandlerInterface[] */
     private $handlers = [];
 
-    /** @var ValidatorInterface[] */
+    /** @var array<string,ValidatorInterface> */
     private $validators = [];
 
     /** @var Hydrator */
@@ -28,7 +28,7 @@ class MetaHydrator implements Hydrator
     /**
      * MetaHydrator constructor.
      * @param HydratingHandlerInterface[] $handlers
-     * @param ValidatorInterface[] $validators
+     * @param array<string,ValidatorInterface> $validators
      * @param Hydrator $simpleHydrator
      */
     public function __construct($handlers = [], $validators = [], $simpleHydrator = null)
@@ -85,11 +85,11 @@ class MetaHydrator implements Hydrator
             }
         }
 
-        foreach ($this->validators as $validator) {
+        foreach ($this->validators as $key => $validator) {
             try {
                 $validator->validate($parsedData, $contextObject);
             } catch (ValidationException $e) {
-                $errorsMap = array_merge($e->getInnerError(), $errorsMap);
+                $errorsMap = array_merge([$key => $e->getInnerError()], $errorsMap);
             }
         }
 
