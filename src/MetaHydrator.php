@@ -31,7 +31,7 @@ class MetaHydrator implements Hydrator
      * @param array<string,ValidatorInterface> $validators
      * @param Hydrator $simpleHydrator
      */
-    public function __construct($handlers = [], $validators = [], $simpleHydrator = null)
+    public function __construct(array $handlers = [], array $validators = [], Hydrator $simpleHydrator = null)
     {
         $this->handlers = $handlers;
         $this->validators = $validators;

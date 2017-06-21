@@ -30,7 +30,7 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
      * @param ParserInterface $parser
      * @param ValidatorInterface[] $validators
      */
-    public function __construct($key, $parser, $validators = [])
+    public function __construct(string $key, ParserInterface $parser, array $validators = [])
     {
         $this->key = $key;
         $this->parser = $parser;

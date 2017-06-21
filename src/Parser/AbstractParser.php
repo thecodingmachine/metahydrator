@@ -20,7 +20,7 @@ abstract class AbstractParser implements ParserInterface
      * AbstractValidator constructor.
      * @param string $errorMessage
      */
-    public function __construct($errorMessage = "")
+    public function __construct(string $errorMessage = "")
     {
         $this->errorMessage = $errorMessage;
     }
