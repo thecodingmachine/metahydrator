@@ -19,10 +19,10 @@ class IntParser extends AbstractParser
     {
         if ($rawValue === null || $rawValue === '') {
             return null;
-        } else if (!is_int($rawValue) && !ctype_digit($rawValue)) {
-            $this->throw();
-        } else {
-            return intval($rawValue);
         }
+        if (!is_int($rawValue) && !ctype_digit($rawValue)) {
+            $this->throw();
+        }
+        return intval($rawValue);
     }
 }
