@@ -19,7 +19,8 @@ class StringParser extends AbstractParser
     {
         if ($rawValue === null) {
             return null;
-        } else if (!is_scalar($rawValue)) {
+        }
+        if (!is_scalar($rawValue)) {
             $this->throw();
         }
         return strval($rawValue);

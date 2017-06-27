@@ -4,14 +4,13 @@ namespace MetaHydrator\Parser;
 use MetaHydrator\Exception\ParsingException;
 
 /**
- * Class IntParser
- * @package MetaHydrator\Parser
+ * An implementation of ParserInterface used to parse a float value.
  */
-class IntParser extends AbstractParser
+class FloatParser extends AbstractParser
 {
     /**
      * @param $rawValue
-     * @return mixed
+     * @return float|null
      *
      * @throws ParsingException
      */
@@ -20,9 +19,9 @@ class IntParser extends AbstractParser
         if ($rawValue === null || $rawValue === '') {
             return null;
         }
-        if (!is_int($rawValue) && !ctype_digit($rawValue)) {
+        if(!is_float($rawValue) && !is_int($rawValue) && !is_numeric($rawValue)) {
             $this->throw();
         }
-        return intval($rawValue);
+        return floatval($rawValue);
     }
 }

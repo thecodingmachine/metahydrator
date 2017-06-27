@@ -17,13 +17,21 @@ use Mouf\Hydrator\TdbmHydrator;
 class MetaHydrator implements Hydrator
 {
     /** @var HydratingHandlerInterface[] */
-    private $handlers = [];
+    private $handlers;
+    public function getHandlers() { return $this->handlers; }
+    public function setHandlers(array $handlers) { $this->handlers = $handlers; }
+    public function addHandler(HydratingHandlerInterface $handler) { $this->handlers[] = $handler; }
 
     /** @var array<string,ValidatorInterface> */
-    private $validators = [];
+    private $validators;
+    public function getValidators() { return $this->validators; }
+    public function setvalidators(array $validators) { $this->validators = $validators; }
+    public function addValidator(string $key, ValidatorInterface $validator) { $this->validators[$key] = $validator; }
 
     /** @var Hydrator */
     private $simpleHydrator;
+    public function getSimpleHydrator() { return $this->simpleHydrator; }
+    public function setSimpleHydrator(Hydrator $hydrator) { $this->simpleHydrator = $hydrator; }
 
     /**
      * MetaHydrator constructor.
@@ -31,7 +39,7 @@ class MetaHydrator implements Hydrator
      * @param array<string,ValidatorInterface> $validators
      * @param Hydrator $simpleHydrator
      */
-    public function __construct($handlers = [], $validators = [], $simpleHydrator = null)
+    public function __construct(array $handlers = [], array $validators = [], Hydrator $simpleHydrator = null)
     {
         $this->handlers = $handlers;
         $this->validators = $validators;
