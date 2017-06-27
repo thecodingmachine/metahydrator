@@ -13,9 +13,14 @@ class ArrayParser extends AbstractParser
 {
     /** @var ParserInterface */
     private $subParser;
+    public function getSubParser() { return $this->subParser; }
+    public function setSubParser(ParserInterface $parser) { $this->subParser = $parser; }
 
     /** @var ValidatorInterface[] */
     private $subValidators;
+    public function getSubValidators() { return $this->subValidators; }
+    public function setSubValidators(array $validators) { $this->subValidators = $validators; }
+    public function addSubValidator(ValidatorInterface $validator) { $this->subValidators[] = $validator; }
 
     /**
      * ArrayParser constructor.

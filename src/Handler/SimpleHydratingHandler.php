@@ -17,12 +17,19 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
 {
     /** @var string */
     private $key;
+    public function getKey() { return $this->key; }
+    public function setKey(string $key) { $this->key = $key; }
 
     /** @var ParserInterface */
     private $parser;
+    public function getParser() { return $this->parser; }
+    public function setParser(ParserInterface $parser) { $this->parser = $parser; }
 
     /** @var ValidatorInterface[] */
     private $validators;
+    public function getValidators() { return $this->validators; }
+    public function setValidators(array $validators) { $this->validators = $validators; }
+    public function addValidator(ValidatorInterface $validator) { $this->validators[] = $validator; }
 
     /**
      * SimpleHydratingHandler constructor.
