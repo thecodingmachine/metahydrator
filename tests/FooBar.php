@@ -1,8 +1,18 @@
 <?php
 namespace MetaHydratorTest;
 
+use MetaHydrator\Reflection\Setter;
+
 class FooBar implements \JsonSerializable
 {
+    public function __construct($values = [])
+    {
+        $setter = new Setter(false);
+        foreach ($values as $key => $value) {
+            $setter->set($this, $key, $value);
+        }
+    }
+
     /** @var string */
     private $foo;
     /** @return string */
@@ -31,11 +41,11 @@ class FooBar implements \JsonSerializable
     /** @var FooBar $qux */
     public function setQux($qux) { $this->qux = $qux; }
 
-    /** @var string */
+    /** @var FooBar */
     private $quux;
-    /** @return string */
+    /** @return FooBar */
     public function getQuux() { return $this->quux; }
-    /** @var string $quux */
+    /** @var FooBar $quux */
     public function setQuux($quux) { $this->quux = $quux; }
 
     /** @var string */
@@ -45,25 +55,25 @@ class FooBar implements \JsonSerializable
     /** @var string $corge */
     public function setCorge($corge) { $this->corge = $corge; }
 
-    /** @var string */
+    /** @var int[] */
     private $grault;
-    /** @return string */
+    /** @return int[] */
     public function getGrault() { return $this->grault; }
-    /** @var string $grault */
+    /** @var int[] $grault */
     public function setGrault($grault) { $this->grault = $grault; }
 
-    /** @var string */
+    /** @var FooBar[] */
     private $garply;
-    /** @return string */
+    /** @return FooBar[] */
     public function getGarply() { return $this->garply; }
-    /** @var string $garply */
+    /** @var string FooBar[] */
     public function setGarply($garply) { $this->garply = $garply; }
 
-    /** @var string */
+    /** @var FooBar */
     private $waldo;
-    /** @return string */
+    /** @return FooBar */
     public function getWaldo() { return $this->waldo; }
-    /** @var string $waldo */
+    /** @var FooBar $waldo */
     public function setWaldo($waldo) { $this->waldo = $waldo; }
 
     /** @var string */

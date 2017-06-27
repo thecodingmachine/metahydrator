@@ -28,7 +28,7 @@ class ArrayParser extends AbstractParser
      * @param ValidatorInterface[] $subValidators
      * @param string $errorMessage
      */
-    public function __construct(ParserInterface $subParser, $subValidators = [], $errorMessage = "")
+    public function __construct(ParserInterface $subParser, array $subValidators = [], string $errorMessage = "")
     {
         parent::__construct($errorMessage);
         $this->subParser = $subParser;
