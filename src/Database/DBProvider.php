@@ -17,7 +17,7 @@ interface DBProvider
      * - return the found bean otherwise
      *
      * @param string $table
-     * @param array $params
+     * @param array $data
      * @return mixed|null
      *
      * @throws DBException
