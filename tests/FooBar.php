@@ -3,13 +3,12 @@ namespace MetaHydratorTest;
 
 use MetaHydrator\Reflection\Setter;
 
-class FooBar implements \JsonSerializable
+class FooBar implements \JsonSerializable, \ArrayAccess
 {
     public function __construct($values = [])
     {
-        $setter = new Setter(false);
         foreach ($values as $key => $value) {
-            $setter->set($this, $key, $value);
+            $this[$key] = $value;
         }
     }
 
@@ -124,5 +123,68 @@ class FooBar implements \JsonSerializable
             'xyzzy' => $this->xyzzy,
             'thud' => $this->thud
         ];
+    }
+
+    public function offsetExists($offset)
+    {
+        return in_array($offset, ['foo', 'bar',  'baz',  'qux',  'quux',  'corge',  'grault',  'garply',  'waldo',  'fred',  'plugh',  'xyzzy',  'thud',]);
+    }
+
+    public function offsetGet($offset)
+    {
+        switch ($offset) {
+            case 'foo' : return $this->foo;
+            case 'bar' : return $this->bar;
+            case 'baz' : return $this->baz;
+            case 'qux' : return $this->qux;
+            case 'quux' : return $this->quux;
+            case 'corge' : return $this->corge;
+            case 'grault' : return $this->grault;
+            case 'garply' : return $this->garply;
+            case 'waldo' : return $this->waldo;
+            case 'fred' : return $this->fred;
+            case 'plugh' : return $this->plugh;
+            case 'xyzzy' : return $this->xyzzy;
+            case 'thud' : return $this->thud;
+            default: return null;
+        }
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        switch ($offset) {
+            case 'foo' : $this->foo = $value; break;
+            case 'bar' : $this->bar = $value; break;
+            case 'baz' : $this->baz = $value; break;
+            case 'qux' : $this->qux = $value; break;
+            case 'quux' : $this->quux = $value; break;
+            case 'corge' : $this->corge = $value; break;
+            case 'grault' : $this->grault = $value; break;
+            case 'garply' : $this->garply = $value; break;
+            case 'waldo' : $this->waldo = $value; break;
+            case 'fred' : $this->fred = $value; break;
+            case 'plugh' : $this->plugh = $value; break;
+            case 'xyzzy' : $this->xyzzy = $value; break;
+            case 'thud' : $this->thud = $value; break;
+        }
+    }
+
+    public function offsetUnset($offset)
+    {
+        switch ($offset) {
+            case 'foo' : $this->foo = null; break;
+            case 'bar' : $this->bar = null; break;
+            case 'baz' : $this->baz = null; break;
+            case 'qux' : $this->qux = null; break;
+            case 'quux' : $this->quux = null; break;
+            case 'corge' : $this->corge = null; break;
+            case 'grault' : $this->grault = null; break;
+            case 'garply' : $this->garply = null; break;
+            case 'waldo' : $this->waldo = null; break;
+            case 'fred' : $this->fred = null; break;
+            case 'plugh' : $this->plugh = null; break;
+            case 'xyzzy' : $this->xyzzy = null; break;
+            case 'thud' : $this->thud = null; break;
+        }
     }
 }
