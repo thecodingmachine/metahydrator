@@ -38,6 +38,11 @@ class SubHydratingHandler implements HydratingHandlerInterface
     public function setValidators(array $validators) { $this->validators = $validators; }
     public function addValidator(ValidatorInterface $validator) { $this->validators[] = $validator; }
 
+    /** @var mixed */
+    protected $defaultValue;
+    public function getDefaultValue() { return $this->defaultValue; }
+    public function setDefaultValue($defaultValue) { $this->defaultValue = $defaultValue; }
+
     /** @var string */
     protected $errorMessage;
     public function getErrorMessage() { return $this->errorMessage; }
@@ -54,15 +59,17 @@ class SubHydratingHandler implements HydratingHandlerInterface
      * @param string $className
      * @param Hydrator $hydrator
      * @param ValidatorInterface[] $validators
+     * @param mixed $defaultValue
      * @param string $errorMessage
      * @param GetterInterface $getter
      */
-    public function __construct(string $key, string $className, Hydrator $hydrator, array $validators = [], string $errorMessage = "", GetterInterface $getter = null)
+    public function __construct(string $key, string $className, Hydrator $hydrator, array $validators = [], $defaultValue = null, string $errorMessage = "", GetterInterface $getter = null)
     {
         $this->key = $key;
         $this->className = $className;
         $this->hydrator = $hydrator;
         $this->validators = $validators;
+        $this->defaultValue = $defaultValue;
         $this->errorMessage = $errorMessage;
         $this->getter = $getter ?? new Getter(false);
     }
@@ -80,7 +87,7 @@ class SubHydratingHandler implements HydratingHandlerInterface
             if ($object !== null) {
                 return;
             } else {
-                $subObject = null;
+                $subObject = $this->defaultValue;
                 $targetData[$this->key] = $subObject;
             }
         } elseif ($data[$this->key] === null) {
