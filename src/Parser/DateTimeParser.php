@@ -18,17 +18,24 @@ class DateTimeParser extends AbstractParser
     public function getIgnoreWarnings() { return $this->ignoreWarnings; }
     public function setIgnoreWarnings(bool $ignoreWarnings) { $this->ignoreWarnings = $ignoreWarnings; }
 
+    /** @var bool */
+    private $immutable;
+    public function getImmutable() { return $this->immutable; }
+    public function setImmutable(bool $immutable) { $this->immutable = $immutable; }
+
     /**
      * DateTimeParser constructor.
      * @param string|null $format
      * @param bool $ignoreWarnings
      * @param string $errorMessage
+     * @param bool $immutable
      */
-    public function __construct(string $format = null, bool $ignoreWarnings = false, string $errorMessage = "")
+    public function __construct(string $format = null, bool $ignoreWarnings = false, string $errorMessage = "", bool $immutable = false)
     {
         parent::__construct($errorMessage);
         $this->format = $format;
         $this->ignoreWarnings = $ignoreWarnings;
+        $this->immutable = $immutable;
     }
 
     /**
@@ -54,6 +61,10 @@ class DateTimeParser extends AbstractParser
         }
         if (!$this->ignoreWarnings && $errors['warning_count'] > 0) {
             $this->throw();
+        }
+
+        if ($this->immutable) {
+            $date = \DateTimeImmutable::createFromMutable($date);
         }
 
         return $date;
