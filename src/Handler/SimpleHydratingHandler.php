@@ -31,17 +31,24 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
     public function setValidators(array $validators) { $this->validators = $validators; }
     public function addValidator(ValidatorInterface $validator) { $this->validators[] = $validator; }
 
+    /** @var mixed */
+    private $defaultValue;
+    public function getDefaultValue() { return $this->defaultValue; }
+    public function setDefaultValue($defaultValue) { $this->defaultValue = $defaultValue; }
+
     /**
      * SimpleHydratingHandler constructor.
      * @param string $key
      * @param ParserInterface $parser
      * @param ValidatorInterface[] $validators
+     * @param mixed $default
      */
-    public function __construct(string $key, ParserInterface $parser, array $validators = [])
+    public function __construct(string $key, ParserInterface $parser, array $validators = [], $defaultValue = null)
     {
         $this->key = $key;
         $this->parser = $parser;
         $this->validators = $validators;
+        $this->defaultValue = $defaultValue;
     }
 
     /**
@@ -56,7 +63,7 @@ class SimpleHydratingHandler implements HydratingHandlerInterface
         if (array_key_exists($this->key, $data)) {
             $rawValue = $data[$this->key];
         } else if ($object === null) {
-            $rawValue = null;
+            $rawValue = $this->defaultValue;
         } else {
             return;
         }
