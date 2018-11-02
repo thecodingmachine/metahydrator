@@ -24,6 +24,11 @@ class HydratingException extends \Exception
      */
     public function __construct($errorsMap, $message = "", $code = 412)
     {
+        $errorMessages = [];
+        foreach ($errorsMap as $field => $errorMessage){
+            $errorMessages[] = $field . " : " . $errorMessage;
+        }
+        $message .= "Detailed errors : \n " . implode(", ", $errorMessages);
         parent::__construct($message, $code, null);
         $this->errorsMap = $errorsMap;
     }
