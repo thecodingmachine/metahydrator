@@ -6,8 +6,8 @@ namespace MetaHydrator\Parser;
 class SimpleArrayParser extends AbstractParser
 {
     /**
-     * @param $rawValue
-     * @return mixed|null
+     * @param array[] $rawValue
+     * @return array[]|null
      * @throws \MetaHydrator\Exception\ParsingException
      */
     public function parse($rawValue)

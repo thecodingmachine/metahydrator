@@ -17,8 +17,12 @@ class SimpleArrayParserTest
     {
         $parser = new SimpleArrayParser();
 
-        $parser->parse('');
-        $parser->parse(["random", "lambda", 42]);
-        $parser->parse(null);
+        try {
+            $parser->parse('');
+            $parser->parse(["random", "lambda", 42]);
+            $parser->parse(null);
+        }catch (\Exception $e){
+            echo $e;
+        }
     }
 }
