@@ -12,14 +12,12 @@ class SimpleArrayParser extends AbstractParser
      */
     public function parse($rawValue)
     {
-        if ($rawValue === null || $rawValue === '') {
+        if ($rawValue === null) {
             return null;
-        } else {
-            $value = is_array($rawValue);
-            if ($value === false) {
-                $this->throw();
-            }
-            return $rawValue;
         }
+        if (is_array($rawValue) === false) {
+            $this->throw();
+        }
+        return $rawValue;
     }
 }
