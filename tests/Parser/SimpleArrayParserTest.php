@@ -1,28 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: loic
- * Date: 06/11/18
- * Time: 15:14
- */
-
 namespace MetaHydratorTest\Parser;
 
-
+use MetaHydrator\Exception\ParsingException;
 use MetaHydrator\Parser\SimpleArrayParser;
 
-class SimpleArrayParserTest
+class SimpleArrayParserTest extends \PHPUnit_Framework_TestCase
 {
     public function testParseSimpleArray()
     {
         $parser = new SimpleArrayParser();
 
-        try {
-            $parser->parse('');
-            $parser->parse(["random", "lambda", 42]);
-            $parser->parse(null);
-        }catch (\Exception $e){
-            echo $e;
-        }
+        $this->assertSame(["random", "lambda", 42, null], $parser->parse(["random", "lambda", 42, null]));
+        $this->assertSame(["random", "lambda", 42], $parser->parse(["random", "lambda", 42]));
+        $this->assertSame(["random", "lambda"], $parser->parse(["random", "lambda"]));
+        $this->assertSame([21, 42], $parser->parse([21, 42]));
+        $this->assertSame([42], $parser->parse([42]));
+        $this->assertSame([], $parser->parse([]));
+
+
+        $this->expectException(ParsingException::class);
+        $parser->parse('');
+
+        $this->expectException(ParsingException::class);
+        $parser->parse(null);
     }
 }

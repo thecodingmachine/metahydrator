@@ -2,7 +2,6 @@
 
 namespace MetaHydrator\Parser;
 
-
 class SimpleArrayParser extends AbstractParser
 {
     /**
