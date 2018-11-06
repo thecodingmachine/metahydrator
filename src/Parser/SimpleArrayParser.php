@@ -3,7 +3,7 @@
 namespace MetaHydrator\Parser;
 
 
-class SimpleArray extends AbstractParser
+class SimpleArrayParser extends AbstractParser
 {
     /**
      * @param $rawValue

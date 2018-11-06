@@ -14,7 +14,7 @@ use MetaHydrator\Exception\ParsingException;
 class JsonPaser extends AbstractParser
 {
     /**
-     * @param $value
+     * @param string $value
      * @return mixed
      * @throws ParsingException
      */
@@ -62,7 +62,7 @@ class JsonPaser extends AbstractParser
     }
 
     /**
-     * @param $rawValue
+     * @param string $rawValue
      * @return mixed|null
      * @throws \MetaHydrator\Exception\ParsingException
      */
